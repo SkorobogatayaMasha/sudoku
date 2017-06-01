@@ -1,0 +1,24 @@
+{
+  "name": "cw_api",
+  "version": "0.0.1",
+  "description": "CW API Masha",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.1",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.15.2",
+    "jsonwebtoken": "^7.3.0",
+    "mysql": "^2.13.0",
+    "pg": "^6.2.2",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^3.30.4",
+    "underscore": "^1.8.3"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "db": {
+    "host": "127.0.0.1",
+    "name": "CW",
+    "user": "root",
+    "password": "",
+    "port":"3306",
+    "dialect": "mysql"
+  },
+  "db_heroku":{
+    "host": "ec2-23-21-224-199.compute-1.amazonaws.com",
+    "name": "dfd1cmfl35ovo0",
+    "user": "yygrehvowxxxte",
+    "password": "94ba599fd4b7f7287409448764cc724ac1867a1fbc22f9a1f5c441bee65fcb98",
+    "port":"5432",
+    "dialect": "postgres"
+  },
+  "env": "dev",
+  "cookie": {
+    "key": "secret key",
+    "auth": "x-access-token"
+  }
+}

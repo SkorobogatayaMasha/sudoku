@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная</title>
+    <script src="jquery-3.2.1.min.js"></script>
+    <script src="bootstrap.js"></script>
+    <link rel="stylesheet" href="bootstrap.min.css">
+</head>
+<body style="background: #faf2cc">
+<br>
+<div style="border: 5px solid darkred; position: absolute;left: 30%; width: 400px;height: 550px;" >
+    <br>
+    <center>
+        <button  class="btn btn-info" data-toggle="collapse" data-target="#login">Войти</button>
+    </center>
+
+    <div align="center" id="login" class="collapse in">
+        <form role="form" class="form-group" action="api/auth/login" method="post">
+            <div style="border: 5px;width: 300px;height: 100px " >
+                <input name="email" class="form-control" type="email" placeholder="Email">
+                <input name="password" class="form-control" type="password" placeholder="Пароль">
+                <input type="submit" class="btn btn-success" value="Войти">
+            </div>
+        </form>
+    </div>
+
+    <br>
+
+    <center>
+        <button class="btn btn-info" data-toggle="collapse" data-target="#register">Регистрация</button>
+    </center>
+    <br>
+    <div align="center" id="register" class="collapse in">
+        <form role="form" class="form-group" action="api/auth/register" method="post">
+            <div style="border: 5px;width: 300px;height: 200px">
+                <div id="firstnameq" class="form-group has-success">
+                    <input id="firstname" pattern="[А-Яа-яA-Za-z]{10}" name="firstname" class="form-control" type="text" placeholder="Имя">
+                </div>
+                <div class="form-group has-success">
+                    <input name="lastname"  pattern="[А-Яа-яA-Za-z]{10}" class="form-control" type="text" placeholder="Фамилия">
+                </div>
+                <div class="form-group has-success">
+                    <input name="email" class="form-control" type="email" placeholder="Email">
+                </div>
+                <div class="form-group has-success">
+                    <input name="password" class="form-control" type="password" placeholder="Пароль">
+                </div>
+                <input class="btn btn-success" type="submit" value="Регистрация">
+
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+
+
+
+
+</script>
+
+
+</body>
+</html>

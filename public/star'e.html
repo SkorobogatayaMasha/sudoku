@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <script src="jquery-3.2.1.min.js"></script>
+    <script src="bootstrap.js"></script>
+    <link rel="stylesheet" href="bootstrap.min.css">
+
+    <title>Главная</title>
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.0.min.js"></script>
+    <script src="/dom-to-image.min.js"></script>
+    <style>
+        #field {width:292px}
+        input {outline:none;width:30px;height:30px;border:1px solid black;font-family:Calibri;font-size:25px;text-align:center}
+        .left {border-left:3px solid black}
+        .top {border-top:3px solid black}
+        .right {border-right:3px solid black}
+        .bottom {border-bottom:3px solid black}
+        input:focus {background:#eee}
+        input:disabled {background:#ccc;color:#000}
+    </style>
+</head>
+<body>
+<button  class="btn btn-info" data-toggle="collapse" data-target="#login">Войти</button>
+<button  class="btn btn-info" data-toggle="collapse" data-target="#register">Регистрация</button>
+<div>
+    <div align="right" id="login" class="collapse in">
+        <form role="form" class="form-group" action="api/auth/login" method="post">
+            <div style="border: 5px;width: 300px;height: 100px">
+                <input   name="email" class="form-control" type="email" placeholder="Email">
+                <input   name="password" class="form-control" type="password" placeholder="Пароль">
+                <input type="submit" class="btn btn-success" value="Войти">
+            </div>
+        </form>
+    </div>
+    <div align="right" id="register" class="collapse in">
+        <form role="form" class="form-group" action="api/auth/register" method="post">
+            <div style="border: 5px;width: 300px;height: 200px">
+                <input  name="firstname" class="form-control" type="text" placeholder="Имя">
+                <input  name="lastname" class="form-control" type="text"placeholder="Фамилия">
+                <input  name="email"  class="form-control" type="email" placeholder="Email">
+                <input  name="password" class="form-control"  type="password" placeholder="Пароль">
+                <input class="btn btn-success" type="submit" value="Регистрация">
+            </div>
+        </form>
+    </div>
+</div>
+
+<div style="min-height: 100%;">
+    <div id="header"><a href="\" id="header" style="text-decoration: none; font-family:  Arial, Helvetica, sans-serif;font-size: 94px;">Sudoku by SkorMash</a> </div>
+    <div id="Menu"><li id="current"><a>Game</a></li><li><a>Print</a></li><li><a>Rule</a></div>
+    <div style="min-height: 100%;"></div>
+    <div id="footer"><p style="margin: 0; margin-top: 8px; text-align: center;">By SkorMash © 2017</p></div>
+</div>
+<script>
+    $(document).ready(function() {
+        $.ajax({
+            type: "GET",
+            url: 'http://localhost:3000/api/sudoku/generate',
+            success: (data) => {
+                console.log(data);
+                const sudoku = data.sudoku.split(',');
+
+                sudoku[0] = sudoku[0].split('[')[1];
+                sudoku[sudoku.length - 1] = sudoku[sudoku.length - 1].split(']')[0];
+
+                $("body").append('<br/>');
+                for (let i = 1; i < sudoku.length + 1; i++) {
+                    var classes = '', disabled='';
+                    if (i%3==1) classes+= 'left ';
+                    if (i % 27 < 10 && i%27>0) classes+= 'top ';
+                    if (i%9==0) classes+='right ';
+                    if (i>72) classes+='bottom ';
+                    if (sudoku[i - 1]>0) disabled='disabled';
+                    $("#field").append('<input maxlength="1"  type="text" '+disabled+' class="'+classes+'" value="'+((sudoku[i - 1]>0)?parseInt(sudoku[i - 1])+1:'')+'">')
+
+                    if (i % 9 == 0) $("#field").append('<br/>');
+                }
+                domtoimage.toJpeg(document.getElementById("field"), { quality: 0.95 }).then(function (dataUrl) {
+                    var img = new Image();
+                    img.src = dataUrl;
+                    document.body.appendChild(img);
+                });
+
+                const answer = data.answer.split(',');
+
+                answer[0] = answer[0].split('[')[1];
+                answer[answer.length - 1] = answer[answer.length - 1].split(']')[0];
+
+                $("body").append('-------------------------<br/>');
+                $("body").append(' | ');
+                for (let i = 1; i < answer.length + 1; i++) {
+                    if (answer[i - 1] === 'null')
+                        $("body").append('0 ');
+                    else
+                        $("body").append(parseInt(answer[i - 1])+1 + ' ');
+
+                    if (i % 9 === 0) $("body").append(' | <br/>');
+                    if (i % 27 === 0) $("body").append('-------------------------<br/>');
+                    if (i % 3 === 0 && i !== answer.length) $("body").append(' | ');
+                }
+
+            }
+        })
+    });
+</script>
+    <div id="field"></div>
+</body>
+</html>
