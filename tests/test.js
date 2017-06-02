@@ -104,13 +104,13 @@ describe('Сервис recorde', () => {
         });
     });*/
 
-    describe('Функция rand', () => {
+  /*  describe('Функция rand', () => {
         it('Отдавать объект', () => {
             const recorde = recordService.rand();
             recorde.should.be.equal(true);
         });
     });
-
+*/
 
 });
 
