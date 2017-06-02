@@ -10,4 +10,4 @@ before_script:
   - npm install --only=dev
   - npm install --global mocha
 script:
-  - mocha test --timeout 5000
+  - mocha tests --timeout 5000

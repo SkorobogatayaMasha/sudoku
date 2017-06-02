@@ -105,7 +105,7 @@ describe('Сервис recorde', () => {
     });
 
     describe('Функция rand', () => {
-        it.only('Отдавать объект', () => {
+        it('Отдавать объект', () => {
             const recorde = recordService.rand();
             recorde.should.be.equal(true);
         });
