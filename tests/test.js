@@ -97,12 +97,12 @@ describe('Сервис recorde', () => {
         });
     });
 
-    describe('Функция findOne', () => {
+/*    describe('Функция findOne', () => {
         it('Отдавать объект', () => {
             const recorde = recordService.isExisting('00:03:04');
             return recorde.then(data => data.should.be.equal(true));
         });
-    });
+    });*/
 
     describe('Функция rand', () => {
         it('Отдавать объект', () => {
